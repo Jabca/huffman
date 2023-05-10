@@ -1,16 +1,12 @@
-﻿using HuffmanTreeNamespace;
-using BitStringNamespace;
-using System;
-using FileUtilsNamespace;
-using EncodeDecodeNamespace;
-using ExecutorNamespace;
+﻿using ExecutorNamespace;
 
 namespace Program{
     class Program{
         /// Program to compress and decompress files using ssaf archive format
         public static void Main(string[] SysArgv){
             /// main function
-            // construct executor object based on console arguments 
+            // construct executor object based on console arguments
+            // SysArgv = new string[]{"test/src.txt"};
             Executor exe = new Executor(SysArgv);
             // check whether display help message
             if(exe.returnHelp()){

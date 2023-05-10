@@ -75,12 +75,12 @@ namespace HuffmanTreeNamespace{
             /// return encoded value of byte as bitstring(corresponding data node address)
             // get node with argument's data
             try{
-                HuffmanNode cur_node =  DataNodes[arg];
+                HuffmanNode next_node =  DataNodes[arg];
+                return RecursiveEncode(next_node, new BitString());
             }
             catch(KeyNotFoundException){
                 throw new KeyNotFoundException("No node with value: " + arg);
             }
-            return RecursiveEncode(cur_node, new BitString());
         }
         private byte? RecursiveDecode(HuffmanNode cur_node, BitString address){
             /// Moves to child depending on argument

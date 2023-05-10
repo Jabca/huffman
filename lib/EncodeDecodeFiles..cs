@@ -130,6 +130,7 @@ namespace EncodeDecodeNamespace{
                     // iterate over bytes of read chunk
                     for(int i = 0; i < bytes_read; i++){
                         // encode byte and add it to bitstring
+
                         encodedValue = tree.EncodeValue(read_buffer[i]);
                         buffer.AppendRight(encodedValue);
                         // while possible get bytes from bitstring and add them to write buffer 
