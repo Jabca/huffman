@@ -18,6 +18,8 @@ namespace EncodeDecodeNamespace{
             long original_file_size = tree_decoder.GetOriginalFileLength();
             long bits_written = 0;
             int bytes_read; 
+            bool file_short = true;
+            bool file_long = false;
             BitString buffer = new BitString();
 
             byte[] read_buffer = new byte[chunk_size];
@@ -60,6 +62,10 @@ namespace EncodeDecodeNamespace{
                                     // last byte of file was decoded - end decoding and write data from write_buffer
                                     target_fs.Write(write_buffer.ToArray(), 0, write_buffer.Count);
                                     write_buffer.Clear();
+                                    file_short = false;
+                                    if(source_fs.Position + 1 == source_fs.Length){
+                                        file_long = true;
+                                    }
                                     break;
                                 }
                             } 
@@ -70,7 +76,16 @@ namespace EncodeDecodeNamespace{
                     target_fs.Write(write_buffer.ToArray(), 0, write_buffer.Count);
                 }
             }
-            return "Successfully created file '" + output_file + "'";
+            if(file_short){
+                return "Decoded file is too small, archive is corrupted";
+            }
+            else if(file_long){
+                return "Decoded file is too big, archive is corrupted";
+            }
+            else{
+                return "Successfully created file '" + output_file + "'";
+            }
+            
         }
     }
 

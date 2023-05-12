@@ -128,13 +128,19 @@ namespace BitStringNamespace{
             return data;
         }
 
-        public void AppendRight(BitString bs){
+        public void AppendRight(params BitString[] bs_list){
             /// add data from another bitstring to the right side
-            int l = bs.getLength();
-            bit_pointer <<= l;
-            data <<= l;
-            length += l;
-            data += bs.GetData();
+            foreach(BitString bs in bs_list){
+                int l = bs.getLength();
+                bit_pointer <<= l;
+                data <<= l;
+                length += l;
+                data += bs.GetData();
+                if(length > 64){
+                    throw new Exception("Bitstring overflow");
+                }
+            }
+            
         }
 
         public byte GetFirstByte(){
