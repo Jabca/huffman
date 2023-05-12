@@ -75,7 +75,7 @@ namespace BitStringNamespace{
         public int GetRight(){
             /// return rightmost bit
             if(length == 0){
-                throw new Exception("Bitstring is empty");
+                throw new Exception("BitString is empty");
             }
             return (int)(data & 1);
         }
@@ -83,15 +83,15 @@ namespace BitStringNamespace{
         public int PopRight(){
             /// remove and return rightmost bit
             if(length == 0){
-                throw new Exception("Bitstring is empty");
+                throw new Exception("BitString is empty");
             }
 
-            int ret_vlue = this.GetRight();
+            int ret_value = this.GetRight();
 
             data >>= 1;
             length--;
             bit_pointer >>= 1;
-            return ret_vlue;
+            return ret_value;
         }
          
         public override string ToString(){
@@ -148,7 +148,7 @@ namespace BitStringNamespace{
         public void fillToByte(){
             /// fills bitstring with zeroes from right to length of 8
             if(length >= 8){
-                throw new Exception("Bitstring is alredy minimum 1 byte long");
+                throw new Exception("Bitstring is already minimum 1 byte long");
             }
             bit_pointer <<= (8 - length);
             data <<= (8 - length);
