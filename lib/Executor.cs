@@ -89,6 +89,10 @@ namespace ExecutorNamespace{
                 error_message = "No arguments were provided";
                 return;
             }
+            if(sys_args[0] == "-h" || sys_args[0] == "--help"){
+                display_help = true;
+                return;
+            }
             input_path = sys_args[0];
             // parse arguments separated by space
             for(int i = 1; i < sys_args.Length; i++){
@@ -96,7 +100,7 @@ namespace ExecutorNamespace{
                     // display help
                     case "-h": case "--help":
                         display_help = true;
-                        break;
+                        return;
                     // provide path for target file
                     case "-p": case "--path":
                         i++; 
